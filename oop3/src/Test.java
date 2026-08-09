@@ -1,4 +1,4 @@
-package oop3;
+import oop3.Car;
 
 public class Test {
 
