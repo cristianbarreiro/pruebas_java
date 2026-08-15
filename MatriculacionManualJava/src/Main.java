@@ -59,11 +59,8 @@ public class Main {
     }
 
     private static void anadirEstudiante(Scanner sc, HashSet<Estudiante> estudiantes) {
-        System.out.print("ID del estudiante: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
+        int id = leerEnteroPositivo(sc, "ID del estudiante");
+        String nombre = leerTexto(sc, "Nombre");
 
         if (estudiantes.add(new Estudiante(id, nombre))) {
             System.out.println("Estudiante añadido.");
@@ -73,13 +70,9 @@ public class Main {
     }
 
     private static void anadirCurso(Scanner sc, HashSet<Curso> cursos) {
-        System.out.print("Código del curso: ");
-        String codigo = sc.nextLine();
-        System.out.print("Nombre del curso: ");
-        String nombre = sc.nextLine();
-        System.out.print("Aforo máximo: ");
-        int aforo = sc.nextInt();
-        sc.nextLine();
+        String codigo = leerTexto(sc, "Código del curso");
+        String nombre = leerTexto(sc, "Nombre del curso");
+        int aforo = leerEnteroPositivo(sc, "Aforo máximo");
 
         if (cursos.add(new Curso(codigo, nombre, aforo))) {
             System.out.println("Curso añadido.");
@@ -89,11 +82,8 @@ public class Main {
     }
 
     private static void inscribirEstudiante(Scanner sc, HashSet<Estudiante> estudiantes, HashSet<Curso> cursos) {
-        System.out.print("ID del estudiante: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-        System.out.print("Código del curso: ");
-        String codigo = sc.nextLine();
+        int id = leerEnteroPositivo(sc, "ID del estudiante");
+        String codigo = leerTexto(sc, "Código del curso");
 
         Estudiante e = buscarEstudiante(estudiantes, id);
         Curso c = buscarCurso(cursos, codigo);
@@ -114,11 +104,8 @@ public class Main {
     }
 
     private static void darDeBaja(Scanner sc, HashSet<Estudiante> estudiantes, HashSet<Curso> cursos) {
-        System.out.print("ID del estudiante: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-        System.out.print("Código del curso: ");
-        String codigo = sc.nextLine();
+        int id = leerEnteroPositivo(sc, "ID del estudiante");
+        String codigo = leerTexto(sc, "Código del curso");
 
         Estudiante e = buscarEstudiante(estudiantes, id);
         Curso c = buscarCurso(cursos, codigo);
@@ -137,9 +124,7 @@ public class Main {
     }
 
     private static void verDetallesEstudiante(Scanner sc, HashSet<Estudiante> estudiantes, HashSet<Curso> cursos) {
-        System.out.print("ID del estudiante: ");
-        int id = sc.nextInt();
-        sc.nextLine();
+        int id = leerEnteroPositivo(sc, "ID del estudiante");
 
         Estudiante e = buscarEstudiante(estudiantes, id);
         if (e == null) {
@@ -156,6 +141,36 @@ public class Main {
                 Curso c = buscarCurso(cursos, codigo);
                 System.out.println("  - " + codigo + (c != null ? " (" + c.getNombre() + ")" : ""));
             }
+        }
+    }
+
+    private static int leerEnteroPositivo(Scanner sc, String campo) {
+        int valor;
+        while (true) {
+            System.out.print(campo + ": ");
+            if (sc.hasNextInt()) {
+                valor = sc.nextInt();
+                sc.nextLine();
+                if (valor > 0) {
+                    return valor;
+                }
+                System.out.println("Error: el valor debe ser un número positivo.");
+            } else {
+                sc.nextLine();
+                System.out.println("Error: introduce un número válido.");
+            }
+        }
+    }
+
+    private static String leerTexto(Scanner sc, String campo) {
+        String texto;
+        while (true) {
+            System.out.print(campo + ": ");
+            texto = sc.nextLine().trim();
+            if (!texto.isEmpty()) {
+                return texto;
+            }
+            System.out.println("Error: el campo no puede estar vacío.");
         }
     }
 
