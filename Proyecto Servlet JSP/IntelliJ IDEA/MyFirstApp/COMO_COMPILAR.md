@@ -52,13 +52,31 @@ mvn clean package
 
 ## 4. Recarga tras cambios
 
-1. Recompila (paso 2).
-2. Copia de nuevo el WAR a `webapps` y **reinicia Tomcat**:
+**Importante:** si solo reemplazas el WAR, Tomcat puede seguir sirviendo el JSP/código viejo
+(quedan la carpeta explotada `webapps\MyFirstApp` y el JSP compilado en caché en `work\Catalina`).
+El ciclo fiable es:
+
+1. Para Tomcat:
+   ```powershell
+   $env:JAVA_HOME = "C:\Users\crist\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.3.9-hotspot"
+   $env:CATALINA_HOME = "C:\apache-tomcat-10.1.57\apache-tomcat-10.1.57"
+   & "$env:CATALINA_HOME\bin\shutdown.bat"
    ```
-   ...\bin\shutdown.bat
-   ...\bin\startup.bat
+2. Recompila (paso 2) → genera `target/MyFirstApp.war`.
+3. Limpia los restos viejos del despliegue:
+   ```powershell
+   Remove-Item -Recurse -Force "$env:CATALINA_HOME\webapps\MyFirstApp"
+   Remove-Item -Recurse -Force "$env:CATALINA_HOME\work\Catalina"
    ```
-   (Tomcat redeplega el WAR si lo sobreescribes y borras la carpeta `webapps\MyFirstApp` explotada antes, pero lo más fiable es reiniciar.)
+4. Copia el WAR nuevo a `webapps`:
+   ```powershell
+   Copy-Item "target\MyFirstApp.war" "$env:CATALINA_HOME\webapps\MyFirstApp.war" -Force
+   ```
+5. Arranca Tomcat:
+   ```powershell
+   & "$env:CATALINA_HOME\bin\startup.bat"
+   ```
+6. Recarga `http://localhost:8080/MyFirstApp/`.
 
 ## Notas
 
