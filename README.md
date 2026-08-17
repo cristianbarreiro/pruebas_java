@@ -1,43 +1,69 @@
-# Pruebas Java — OOP
+# Java Testing Lab
 
-Proyecto de práctica en Java que demuestra los fundamentos de la programación orientada a objetos: encapsulación, colaboración entre objetos y composición.
+Repositorio de práctica y experimentación con el ecosistema Java.
 
-## Estructura
+---
 
-```
-oop1/src/
-├── TestDrive.java          # Punto de entrada (main)
-└── oop1/
-    ├── Car.java            # Auto que usa un Engine
-    └── Engine.java         # Motor con RPM
-```
+## Fundamentos de Java
 
-## Cómo compilar y ejecutar
+| Proyecto | Qué demuestra |
+|----------|---------------|
+| **firstIdea/** | `ArrayList<String>`, iteración con for-each y lambdas |
+| **practicesArrays/** | Operaciones con `ArrayList`: add, get, remove |
+| **practiceHashSets/** | Uso básico de `HashSet` y eliminación de duplicados |
+| **praticeHashMap/** | `HashMap<Integer, String>` y pares clave-valor |
+| **manejoExcepciones/** | Excepciones personalizadas (`InsufficientBalanceException`) y manejo con try-catch |
 
-Desde la raíz del proyecto:
+---
+
+## Programación Orientada a Objetos (OOP)
+
+### Encapsulación y Composición
+
+| Proyecto | Qué demuestra |
+|----------|---------------|
+| **oop1/** | Composición: `Car` contiene un `Engine`, delegación de responsabilidades |
+| **oop2/** | Constructores y sobrecarga: 6 constructores en `User`, pitfall de ambigüedad |
+| **oop3/** | Sobrecarga de métodos: 5 versiones de `accelerate()` con distintos parámetros |
+
+### Herencia y Polimorfismo
+
+| Proyecto | Qué demuestra |
+|----------|---------------|
+| **oop4/** | Herencia simple: `Employee extends Person`, `super()`, `instanceof`, downcasting |
+| **oop5/** | Herencia multinivel: `Person → Employee → Manager`, arrays polimórficos, cálculo de vacaciones |
+| **oop6/** | Interfaces: interfaz `Flyer` implementada por `Airplane`, `UFO` y `Superhero` con menú interactivo |
+
+---
+
+## Proyectos Aplicados
+
+| Proyecto | Qué demuestra |
+|----------|---------------|
+| **ConsoleBankApp/** | App bancaria v1: lógica inline, menú con switch-case y Scanner |
+| **ConsoleBankAppUp/** | Refactorización: misma lógica pero con métodos separados y mejor organización |
+| **MatriculacionManual/** | POO completa: clases `Estudiante`/`Curso` con equals/hashCode, matriculación con `HashSet` |
+| **MatriculacionManualJava/** | Mismo sistema de matriculación con validación de entrada robusta |
+
+---
+
+## Web y Frameworks
+
+| Proyecto | Qué demuestra |
+|----------|---------------|
+| **Proyecto Servlet JSP/** | Servlet Jakarta 6.0 + JSP, configuración web.xml, packaging WAR (Tomcat 10.1) |
+| **Springboot/DependencyInjection/** | Inyección de dependencias con Spring Boot: `@Autowired`, `@Qualifier`, inyección por campo/constructor/setter |
+| **demo/** | Scaffold de Spring Boot 4.1.0 (template base) |
+| **Maven APP/** | Configuración de proyecto Maven con Java 25 |
+
+---
+
+## Cómo ejecutar los proyectos OOP
 
 ```powershell
+# Ejemplo: oop1
 javac -d out oop1\src\TestDrive.java oop1\src\oop1\Car.java oop1\src\oop1\Engine.java
 java -cp out TestDrive
 ```
 
-Salida esperada:
-
-```
-CURR SPEED:17
-CURR SPEED:34
-CURR SPEED:51
-CURR SPEED:51
-CURR SPEED:51
-```
-
-## En IntelliJ IDEA
-
-- Clic derecho sobre `TestDrive` → **Run 'TestDrive.main()'**.
-- La carpeta `out/` (código compilado `.class`) se genera automáticamente y no debe subirse al repositorio.
-
-## Cómo funciona
-
-- `Engine` mantiene las RPM y las incrementa de a 1000 hasta un tope de 3000.
-- `Car` recibe un `Engine` en su constructor (composición) y delega en él para acelerar y calcular la velocidad actual.
-- `TestDrive` crea los objetos y ejecuta la simulación.
+Para los proyectos Maven o Spring Boot, usar el IDE (IntelliJ IDEA o Eclipse) o `mvn spring-boot:run`.
