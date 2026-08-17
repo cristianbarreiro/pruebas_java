@@ -15,3 +15,27 @@ Thumbs.db
 
 # Logs
 *.log
+
+# demo/ build and IDE files
+demo/target/
+demo/bin/
+demo/.idea/
+demo/.settings/
+demo/.classpath
+demo/.project
+demo/.factorypath
+demo/.springBeans
+demo/.sts4-cache
+demo/.metadata/
+demo/*.iml
+demo/*.iws
+demo/*.ipr
+demo/.vscode/
+demo/nbproject/
+demo/nbbuild/
+demo/dist/
+demo/nbdist/
+demo/.nb-gradle/
+demo/build/
+demo/.apt_generated
+/.metadata/
