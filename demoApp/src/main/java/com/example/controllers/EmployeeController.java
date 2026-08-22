@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -33,25 +35,25 @@ public class EmployeeController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Optional <Employee> updateEmployee(@PathVariable(value="id") Integer employeeId, @RequestBody Employee emp) throws ResourceNotFoundException {
-        Optional<Employee> = Optional.ofNullable(employeeRepository.findById(employeeId))
-                .orElseThro(() -> new ResourceNotFoundException("Employee not found for the id " + employeeId));
+    public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Integer employeeId, @RequestBody Employee emp) throws ResourceNotFoundException {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for the id " + employeeId));
 
-        employee.get().sertFirstName(emp.getFirstName());
-        employee.get().setLastName(emp.getLastName());
-        employee.get().setAge(emp.getAge());
-        employee.get().setSalary(emp.getSalary());
-        employee.get().setEducation(emp.getEducation());
-        employeeRepository.save(employee.get());
+        employee.setFirstName(emp.getFirstName());
+        employee.setLastName(emp.getLastName());
+        employee.setAge(emp.getAge());
+        employee.setSalary(emp.getSalary());
+        employee.setEducation(emp.getEducation());
+        employeeRepository.save(employee);
         return ResponseEntity.ok().body(employee);
     }
 
     @DeleteMapping("/delete/{id}")
-    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Integer employeeId) throwws ReouseNotFoundException {
-        Optional<Employee> employee = Optional.ofNullable(employeeRepository.findById(employeeId))
-                .orElseThrow(() -> neww REsourceNotFoundException("Employee not found for the id" + employeeId));
-        employeeRepository.delete(emplyoee.get());
-        Map<String, Boolean> response = neww HashMap<>();
+    public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Integer employeeId) throws ResourceNotFoundException {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for the id " + employeeId));
+        employeeRepository.delete(employee);
+        Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
     }

@@ -1,15 +1,12 @@
 package com.example.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Employee {
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
-    private int EmployeeId;
+    private int employeeId;
     private String firstName;
     private String lastName;
     private int age;
@@ -24,15 +21,15 @@ public class Employee {
         this.age = age;
         this.lastName = lastName;
         this.firstName = firstName;
-        EmployeeId = employeeId;
+        this.employeeId = employeeId;
     }
 
     public int getEmployeeId() {
-        return EmployeeId;
+        return employeeId;
     }
 
     public void setEmployeeId(int employeeId) {
-        EmployeeId = employeeId;
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {
