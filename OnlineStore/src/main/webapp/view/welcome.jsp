@@ -5,5 +5,12 @@
 </head>
 <body>
 <h1> Welcome to my store </h1>
+
+<form>
+<ul>
+    <li><a href="/alpha">Alpha</a></li>
+    <li><a href="/beta">Beta</a></li>
+</ul>
+</form>
 </body>
 </html>

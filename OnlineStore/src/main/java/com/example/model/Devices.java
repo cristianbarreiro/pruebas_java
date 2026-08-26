@@ -14,4 +14,12 @@ public class Devices {
         this.brand = brand;
         this.devices = devices;
     }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public List<Device> getDevices() {
+        return devices;
+    }
 }
