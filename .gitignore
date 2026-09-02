@@ -8,6 +8,34 @@ target/
 # IntelliJ IDEA
 .idea/
 *.iml
+*.iws
+*.ipr
+
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+.apt_generated
+.springBeans
+.sts4-cache
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Build tools
+build/
+bin/
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
 
 # OS files
 .DS_Store
@@ -16,26 +44,5 @@ Thumbs.db
 # Logs
 *.log
 
-# demo/ build and IDE files
-demo/target/
-demo/bin/
-demo/.idea/
-demo/.settings/
-demo/.classpath
-demo/.project
-demo/.factorypath
-demo/.springBeans
-demo/.sts4-cache
-demo/.metadata/
-demo/*.iml
-demo/*.iws
-demo/*.ipr
-demo/.vscode/
-demo/nbproject/
-demo/nbbuild/
-demo/dist/
-demo/nbdist/
-demo/.nb-gradle/
-demo/build/
-demo/.apt_generated
+# metadata
 /.metadata/
