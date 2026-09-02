@@ -44,5 +44,5 @@ Thumbs.db
 # Logs
 *.log
 
-# metadata
-/.metadata/
+# Eclipse workspace metadata
+.metadata/
