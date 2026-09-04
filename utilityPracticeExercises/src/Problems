@@ -1,0 +1,14 @@
+Exercise 1: Format Today's Date
+Suppose we are building an application that need to display today's date
+to users in a readable format such as: 16-03-2026
+Instead of showing the default Java format we want to format the date in day-month-year format.
+
+Exercise 2: Handling Missing Data Safely
+Imagine we are building a user profile system here a user's phone number
+may or may not be available
+If the phone number is missing, we want to display a default message instead of null.
+
+Exercise 3: Validating Required Data
+Suppose our application requires a username to be provided.
+If the username is missing, the program should immediately throw an error
+instead of continuing with invalid data.
