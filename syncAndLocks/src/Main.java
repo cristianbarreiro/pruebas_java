@@ -1,17 +1,18 @@
 import java.util.concurrent.locks.ReentrantLock;
 
 class Counter {
+    int count = 0;
     ReentrantLock lock = new ReentrantLock();
 
-    lock.lock();
-
-    try {
-        count++;
-    } finally {
-        lock.unlock();
+    public void increment() {
+        lock.lock();
+        try {
+            count++;
+        } finally {
+            lock.unlock();
+        }
     }
 }
-
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Counter counter = new Counter();
