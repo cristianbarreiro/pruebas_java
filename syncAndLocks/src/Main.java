@@ -1,9 +1,14 @@
+import java.util.concurrent.locks.ReentrantLock;
 
 class Counter {
-    int count = 0;
+    ReentrantLock lock = new ReentrantLock();
 
-    public synchronized void increment() {
+    lock.lock();
+
+    try {
         count++;
+    } finally {
+        lock.unlock();
     }
 }
 
