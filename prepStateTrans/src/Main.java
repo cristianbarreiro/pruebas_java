@@ -13,12 +13,18 @@ public class Main {
         try {
             Connection connection = DriverManager.getConnection(url,username,password);
 
+            connection.setAutoCommit(false);
+
             String insertSQL = "INSERT INTO users(name, email) VALUES (?, ?)";
-            PreparedStatement pstmt = connection.prepareStatement(insertSQL);
+            PreparedStatement pstmt = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, "John");
             pstmt.setString(2, "john@email.com");
             pstmt.executeUpdate();
             System.out.println("inserted!");
+
+            ResultSet generatedKeys = pstmt.getGeneratedKeys();
+            generatedKeys.next();
+            int nuevoId = generatedKeys.getInt(1);
 
             String selectSQL = "SELECT * FROM users";
             PreparedStatement pstmtSelect = connection.prepareStatement(selectSQL);
@@ -31,16 +37,19 @@ public class Main {
 
             String updateSQL = "UPDATE users SET name = ?, email = ? WHERE id = ?";
             PreparedStatement pstmtUpdate = connection.prepareStatement(updateSQL);
-            pstmtUpdate.setString(1, "updated@email.com");
-            pstmtUpdate.setInt(2, 1);
+            pstmtUpdate.setString(1, "John");
+            pstmtUpdate.setString(2, "updated@email.com");
+            pstmtUpdate.setInt(3, nuevoId);
             pstmtUpdate.executeUpdate();
             System.out.println("Updated!");
 
             String deleteSQL = "DELETE FROM users WHERE id = ?";
             PreparedStatement pstmtDelete = connection.prepareStatement(deleteSQL);
-            pstmtDelete.setInt(1, 1);
+            pstmtDelete.setInt(1, nuevoId);
             pstmtDelete.executeUpdate();
             System.out.println("Deleted!");
+
+            connection.commit();
 
 
         } catch (SQLException e) {
