@@ -5,9 +5,12 @@ class StrategyDemo {
         PaymentContext context = new PaymentContext();
 
         context.setStrategy(new CardPayment());
-        context.executePayment();
+        context.executePayment(100.0);
 
         context.setStrategy(new UPIPayment());
-        context.executePayment();
+        context.executePayment(250.5);
+
+        context.setStrategy(new PaypalPayment());
+        context.executePayment(99.99);
     }
 }

@@ -1,5 +1,5 @@
 package com.demo.designpatterns.strategy;
 
 public interface PaymentStrategy {
-    void pay();
+    void pay(double monto);
 }

@@ -7,7 +7,7 @@ class PaymentContext {
         this.strategy = paymentStrategy;
     }
 
-    public void executePayment() {
-        strategy.pay();
+    public void executePayment(double monto) {
+        strategy.pay(monto);
     }
 }
